@@ -12,9 +12,9 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * @author mhyj
- * @since 2019-06-21
- */
+ * @author MHYJ
+ * @date 2019/6/21 16:48
+ **/
 @Configuration
 @EnableSwagger2
 public class Swagger2Config {
@@ -32,7 +32,7 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("test project").description("interface document").licenseUrl("license url")
-                .contact(new Contact(": name", "http://", "test@email.com")).termsOfServiceUrl("ss")
+                .contact(new Contact(": name", "https://github.com/MHYJ", "test@email.com")).termsOfServiceUrl("ss")
                 .version("1.0").build();
     }
 
