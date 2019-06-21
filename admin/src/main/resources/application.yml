@@ -1,0 +1,5 @@
+server:
+  port: 4826
+spring:
+  profiles:
+    active: dev,test
