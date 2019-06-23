@@ -5,4 +5,11 @@ spring:
     username: root
     password: root
     druid:
-      initial-size: 3
+      initial-size: 6
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: admin
+        allow: localhost
+      web-stat-filter:
+        enabled: true
