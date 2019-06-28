@@ -10,6 +10,9 @@ spring:
         enabled: true
         login-username: admin
         login-password: admin
-        allow: localhost
+        allow: 192.168.1.88
       web-stat-filter:
         enabled: true
+mybatis-plus:
+  global-config:
+    banner: false
