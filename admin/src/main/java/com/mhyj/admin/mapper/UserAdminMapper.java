@@ -1,7 +1,5 @@
 package com.mhyj.admin.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-
 /**
  * <p>
  * 管理员用户 Mapper 接口
