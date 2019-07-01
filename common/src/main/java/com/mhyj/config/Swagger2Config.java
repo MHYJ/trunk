@@ -1,4 +1,4 @@
-package com.mhyj.common.config;
+package com.mhyj.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

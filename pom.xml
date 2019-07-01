@@ -115,6 +115,7 @@
     <modules>
         <module>admin</module>
         <module>common</module>
+        <module>model</module>
     </modules>
 
     <profiles>

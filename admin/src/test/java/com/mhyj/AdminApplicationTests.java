@@ -1,4 +1,4 @@
-package com.mhyj.common;
+package com.mhyj;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CommonApplicationTests {
+public class AdminApplicationTests {
 
     @Test
     public void contextLoads() {

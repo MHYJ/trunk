@@ -1,6 +1,6 @@
-package com.mhyj.admin.service;
+package com.mhyj.user.service;
 
-import com.mhyj.admin.entity.UserAdmin;
+import com.mhyj.entity.UserAdmin;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author mhyj
- * @since 2019-06-28
+ * @since 2019-07-01
  */
 public interface IUserAdminService extends IService<UserAdmin> {
 

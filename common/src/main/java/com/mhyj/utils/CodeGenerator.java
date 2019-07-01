@@ -1,4 +1,4 @@
-package com.mhyj.common.utils;
+package com.mhyj.utils;
 
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
@@ -18,7 +18,7 @@ import java.util.List;
 public class CodeGenerator {
 
     public static void main(String[] args) {
-        generator("/admin","s", "s_user_admin");
+        generator("/admin", "user","s", "s_user_admin");
     }
 
     /**
@@ -26,7 +26,7 @@ public class CodeGenerator {
      * @param prefix   table prefix
      * @param tableName
      */
-    public static void generator(String packagePath, String prefix, String tableName) {
+    public static void generator(String packagePath, String modelName, String prefix, String tableName) {
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
 
@@ -50,8 +50,8 @@ public class CodeGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-//        pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.mhyj.admin");
+        pc.setModuleName(modelName);
+        pc.setParent("com.mhyj");
         mpg.setPackageInfo(pc);
 
         // 自定义配置

@@ -1,4 +1,7 @@
-package com.mhyj.admin.mapper;
+package com.mhyj.user.mapper;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.mhyj.entity.UserAdmin;
 
 /**
  * <p>
@@ -6,7 +9,7 @@ package com.mhyj.admin.mapper;
  * </p>
  *
  * @author mhyj
- * @since 2019-06-28
+ * @since 2019-07-01
  */
 public interface UserAdminMapper extends BaseMapper<UserAdmin> {
 

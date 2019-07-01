@@ -1,9 +1,9 @@
-package com.mhyj.admin.service.impl;
+package com.mhyj.user.service.impl;
 
+import com.mhyj.entity.UserAdmin;
+import com.mhyj.user.mapper.UserAdminMapper;
+import com.mhyj.user.service.IUserAdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.mhyj.model.entity.UserAdmin;
-import com.mhyj.admin.mapper.UserAdminMapper;
-import com.mhyj.admin.service.IUserAdminService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author mhyj
- * @since 2019-06-28
+ * @since 2019-07-01
  */
 @Service
 public class UserAdminServiceImpl extends ServiceImpl<UserAdminMapper, UserAdmin> implements IUserAdminService {
