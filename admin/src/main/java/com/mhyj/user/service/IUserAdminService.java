@@ -1,7 +1,8 @@
 package com.mhyj.user.service;
 
-import com.mhyj.entity.UserAdmin;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mhyj.entity.UserAdmin;
+import com.mhyj.user.controller.vo.UserAdminVo;
 
 /**
  * <p>
@@ -13,4 +14,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserAdminService extends IService<UserAdmin> {
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
+    UserAdminVo selectById(Integer userId);
 }

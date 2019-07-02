@@ -1,14 +1,23 @@
 package com.mhyj.user.controller;
 
 
+import com.mhyj.entity.UserAdmin;
+import com.mhyj.user.controller.dto.UserAdminDto;
+import com.mhyj.user.controller.vo.UserAdminVo;
+import com.mhyj.user.service.IUserAdminService;
 import com.mhyj.vo.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.BeanUtils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+import javax.validation.constraints.NotNull;
 
 /**
  * <p>
@@ -20,13 +29,26 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/user/user-admin")
-@Api(tags = "test")
+@Api(tags = "admin")
+@Validated
 public class UserAdminController {
 
-    @GetMapping("hello")
-    @ApiOperation(value = "test", response = String.class, notes = "lgy")
-    public Result<String> hello() {
-        return Result.ok("hello");
+    @Resource
+    private IUserAdminService userAdminService;
+
+    @PostMapping("save")
+    @ApiOperation(value = "user-save", response = Integer.class, notes = "mhyj")
+    public Result save(UserAdminDto userAdminDto) {
+        UserAdmin userAdmin = new UserAdmin();
+        BeanUtils.copyProperties(userAdminDto, userAdmin);
+        userAdminService.save(userAdmin);
+        return Result.ok(userAdmin.getId());
     }
 
+    @GetMapping("get")
+    @ApiOperation(value = "user-get", response = Integer.class, notes = "mhyj")
+    public Result get(@ApiParam(value = "user-id", required = true)@NotNull Integer userId) {
+        UserAdminVo userAdmin = userAdminService.selectById(userId);
+        return Result.ok(userAdmin);
+    }
 }

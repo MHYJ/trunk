@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title id="title">接口文档页面</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css"
+          href="swagger2/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="swagger2/css/global.css">
+    <link rel="stylesheet" type="text/css" href="swagger2/css/jquery.json-viewer.css">
+</head>
+<body>
+<script id="template" type="text/template">
+    <div class="layui-layout layui-layout-admin"
+         style="border-bottom: solid 3px #1aa094;">
+        <div class="layui-header header ">
+            <div class="layui-main">
+                <div class="admin-login-box logo">
+                    <span>{{:info.title}}<small class="version">{{:info.version}}</small></span>
+                </div>
+                <div style=" position: fixed;top: 10px;right: 20px;width: 500px;display: flex">
+                    <select id="tokenSelectId">
+                        <option value="">请选择</option>
+                        <option value=
+                                        "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6IkFETUlOX1VTRVJfUkVfUk9MRV9SRUFEIiwic3ViIjoie1wiYWNjb3VudE5vbkV4cGlyZWRcIjp0cnVlLFwiYWNjb3VudE5vbkxvY2tlZFwiOnRydWUsXCJjcmVkZW50aWFsc05vbkV4cGlyZWRcIjp0cnVlLFwiZW5hYmxlZFwiOnRydWUsXCJpZFwiOjEsXCJvcmdJZFwiOjAsXCJ0ZW5hbnRJZFwiOjEsXCJ1c2VyVHlwZVwiOjAsXCJ1c2VybmFtZVwiOlwiYWRtaW5cIn0iLCJleHAiOjE2MjIxMzQyOTB9.TxzvvVz2-k18jJNY-Cpsnbo1hbj_MhpROB0pRPI52uTqvhJWJd8fHU7NJjN9ju1XgYrNTqD4lRgDmcfh6oAQOw"
+                        >管理员
+                        </option>
+                        <option value=
+                                        "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6InJpZGUsd3JpdGUiLCJzdWIiOiJ7XCJhY2NvdW50Tm9uRXhwaXJlZFwiOnRydWUsXCJhY2NvdW50Tm9uTG9ja2VkXCI6dHJ1ZSxcImNyZWRlbnRpYWxzTm9uRXhwaXJlZFwiOnRydWUsXCJlbmFibGVkXCI6dHJ1ZSxcIm9yZ1NpZFwiOjIsXCJzaWRcIjo0NzAsXCJ1c2VyVHlwZVwiOjIsXCJ1c2VyVHlwZUVudW1zXCI6XCJDT01QQU5ZX0FETUlOXCIsXCJ1c2VybmFtZVwiOlwiMTU4MTI4MzcwMTBcIn0iLCJleHAiOjE2ODg1MTUzMTB9.-jwK4IbuBNjOlLHC5dAWvH2khymHv83irx_kce0x8QdnW6XdKmuFOOQzUSGJ5QN5CyqwazXkgNQTJjBU5Zix0g"
+                        >子公司
+                        </option>
+                        <option value=
+                                        "eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6InJpZGUsd3JpdGUiLCJzdWIiOiJ7XCJhY2NvdW50Tm9uRXhwaXJlZFwiOnRydWUsXCJhY2NvdW50Tm9uTG9ja2VkXCI6dHJ1ZSxcImNyZWRlbnRpYWxzTm9uRXhwaXJlZFwiOnRydWUsXCJlbmFibGVkXCI6dHJ1ZSxcImZhQ29kZVwiOlwiT1JHX0RFQUxFUl9JTkZPX0NPREUwMDAwOFwiLFwib3JnU2lkXCI6MixcInNpZFwiOjE1MjksXCJ1c2VyUmVsU2lkXCI6Mjc2ODIsXCJ1c2VyVHlwZVwiOjQsXCJ1c2VyVHlwZUVudW1zXCI6XCJPUkdBTl9BRE1JTlwiLFwidXNlcm5hbWVcIjpcIjEzNjEyNzU2MjI0XCJ9IiwiZXhwIjoxNjg4NTE1MjQ0fQ.GPDUiO7ZLw7IZKXJV35zl6CJf078-rjGBYedwoZENO-ameFd4Z4LP9loeV-0Ijn_oy_88qpEwE9vxYIWLpF4eQ"
+                        >FA管理员
+                        </option>
+                        <option value="eyJhbGciOiJIUzUxMiJ9.eyJhdXRob3JpdGllcyI6InJpZGUsd3JpdGUiLCJzdWIiOiJ7XCJhY2NvdW50Tm9uRXhwaXJlZFwiOnRydWUsXCJhY2NvdW50Tm9uTG9ja2VkXCI6dHJ1ZSxcImNyZWRlbnRpYWxzTm9uRXhwaXJlZFwiOnRydWUsXCJlbmFibGVkXCI6dHJ1ZSxcImZhQ29kZVwiOlwiT1JHX0RFQUxFUl9JTkZPX0NPREUwMDAwOFwiLFwib3JnU2lkXCI6MixcInNpZFwiOjI3NTMsXCJ1c2VyUmVsU2lkXCI6NjQ2OTYsXCJ1c2VyVHlwZVwiOjUsXCJ1c2VyVHlwZUVudW1zXCI6XCJPUkdBTl9FTVBMT1lFRVwiLFwidXNlcm5hbWVcIjpcIjEzNjIyNjY4MjEyXCJ9IiwiZXhwIjoxNjg4NTE1MTY3fQ.GP90JcgYz-gg51RgBQJggnwIkWtJ_WvORC6ptH3-Sp0wOudVnvFnQvjspeqNnGlNRl3tW5Q_QgjwdMTPCIVvOg">
+                            FA专员
+                        </option>
+                    </select>
+
+                    <input style="width: 500px;" id="Auth_token" type="text" name="title" required lay-verify="required"
+                           placeholder="Auth_token" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="layui-side layui-bg-black" id="admin-side">
+            <div class="layui-side-scroll" id="admin-navbar-side"
+                 lay-filter="side">
+                <ul class="layui-nav layui-nav-tree beg-navbar">
+                    {{for tags itemVar="~tag"}}
+                    {{if name != "basic-error-controller"}}
+                    <li class="layui-nav-item"><a href="javascript:"><i class="fa fa-cogs" aria-hidden="true"
+                                                                        data-icon="fa-cogs"></i>
+                        <cite>{{:name}}</cite><span class="layui-nav-more"></span></a>
+                        <dl class="layui-nav-child" style="background-color: #384852">
+                           {{if methods}}
+                            {{for methods}}
+                            <dd title="{{:path}}" style="margin-left: 25px">
+                                <a href="javascript:" name="a_path" path="{{:path}}" method="{{:type}}"
+                                   operationId="{{:operationId}}">
+                                    <i class="fa fa-navicon"
+                                       data-icon="fa-navicon"></i><cite>{{:summary}}</cite></a>
+                            </dd>
+                            {{/for}}
+                            {{/if}}
+                        </dl>
+                    <!--    {{!&#45;&#45; <dl class="layui-nav-child" style="background-color: #384852">
+                            {{!&#45;&#45;获取tags下面对应的方法&#45;&#45;}}
+                            {{props ~root.paths itemVar="~path"}}
+                            {{!&#45;&#45;具体方法&#45;&#45;}}
+                            {{props prop}}
+                            {{if prop.tags[0] == ~tag.name}}
+                            <dd title="{{:~path.key}}" style="margin-left: 25px">
+                                <a href="javascript:" name="a_path" path="{{:~path.key}}" method="{{:key}}"
+                                   operationId="{{:prop.operationId}}">
+                                    <i class="fa fa-navicon"
+                                       data-icon="fa-navicon"></i><cite>{{:prop.summary}}</cite></a>
+                            </dd>
+                            {{/if}}
+                            {{/props}}
+                            {{/props}}
+                        </dl>&#45;&#45;}}-->
+                    </li>
+                    {{/if}}
+                    {{/for}}
+                </ul>
+            </div>
+        </div>
+        <div class="layui-footer footer">
+            <div class="layui-main">
+                <p>license:<a href="{{:info.license.url}}">{{:info.license.name}}</a>
+
+                </p>
+
+            </div>
+        </div>
+        <div class="layui-body site-content" id="path-body"
+             style="bottom: 0;border-left: solid 2px #1AA094;">
+            {{!-- body 内容 $ref = temp_body --}}
+        </div>
+
+    </div>
+</script>
+
+<script id="temp_body" type="text/template">
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class="layui-this"><span class="method {{:method}}" m_operationId="{{:operationId}}" path="{{:path}}"
+                                         method="{{:method}}">{{:method}}</span>{{:path}}
+            </li>
+            <li>Debug</li>
+        </ul>
+        <div class="layui-tab-content" style="min-height: 150px; padding: 5px 0 0; height: 803px;">
+            <div class="layui-tab-item layui-show">
+                <table class="layui-table">
+                    <colgroup>
+                        <col width="150">
+                        <col width="150">
+                        <col width="150">
+                        <col>
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>接口地址</th>
+                        <td colspan="3">{{:path}}</td>
+                    </tr>
+                    <tr>
+                        <th>描述</th>
+                        <td colspan="3">{{:summary}}</td>
+                    </tr>
+                    <tr>
+                        <th>开发人员</th>
+                        <td colspan="3">{{:description}}</td>
+                    </tr>
+                    <tr>
+                        <th>Consumes</th>
+                        <td>{{:consumes}}</td>
+                        <th>Produces</th>
+                        <td>{{:produces}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>Parameters</legend>
+                </fieldset>
+                <div class="layui-tab layui-tab-card">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">请求参数</li>
+                        <li>请求参数JSON</li>
+                        <li>请求接口json</li>
+                        <li>新增FORM</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <table class="layui-table">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Parameter Type</th>
+                                    <th>Data Type</th>
+                                    <th>Required</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{for parameters}}
+                                <tr>
+                                    <td>{{:name}}</td>
+                                    <td>{{:description}}</td>
+                                    <td>{{:in}}</td>
+                                    <td>
+                                        {{if schema}}
+                                            {{if schema.type}}
+                                                {{:schema.type}}
+                                             {{else}}
+                                                json
+                                            {{/if}}
+                                        {{else}}
+                                        {{:type}}
+                                        {{/if}}
+                                    </td>
+                                    {{if required}}
+                                    <td><i class="layui-icon">&#xe618;</i></td>
+                                    {{else}}
+                                    <td></td>
+                                    {{/if}}
+                                </tr>
+                                {{/for}}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="layui-tab-item">
+                            <p> {{if bean}}
+                                {{if isArray}}[{{/if}}
+                                 {<br/>
+                                    {{props bean}}
+                                        {{if prop.bean}}
+                                        "{{:key}}" : {{if prop.isArray}}[{{/if}}{<br/>
+                                            {{props prop.bean}}
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{{:key}}" : " ",  // {{:prop.description}}{{if prop.required}}(必填项){{/if}}<br/>
+                                            {{/props}}
+                                            }{{if prop.isArray}}]{{/if}}, <br/>
+                                        {{else}}
+                                            "{{:key}}" : " ",  // {{:prop.description}}  {{if prop.required}}(必填项){{/if}}<br/>
+                                        {{/if}}
+                                    {{/props}}
+                                 <br/>}
+                                {{if isArray}}]{{/if}}
+                            {{else}}
+                                params:{<br/>
+                                {{for parameters}}
+                                {{:name}}:'',// {{:description}}<br/>
+                                {{/for}}
+                                }
+                            {{/if}}
+                            </p>
+                        </div>
+                        <div class="layui-tab-item">
+                            // {{:summary}}<br/>
+                            export function fn(params) {<br/>
+                            return request({<br/>
+                            url: '{{:path}}',<br/>
+                            method: '{{:method}}',<br/>
+                            {{if method == 'get'}}
+                            params: params<br/>
+                            {{else}}
+                            data: params<br/>
+                            {{/if}}                            })<br/>
+                            }<br/>
+                        </div>
+                        <div class="layui-tab-item">
+                                         &ltel-form :model="formParams" label-position="right" label-width="100px"&gt<br/>
+                                         {{for parameters}}
+                                             &ltel-form-item label="{{:description}}"&gt<br/>
+                                                 &ltel-input v-model="formParams.{{:name}}" placeholder="请输入{{:description}}"/&gt<br/>
+                                             &lt/el-form-item&gt<br/>
+                                         {{/for}}
+                                         &lt/el-form&gt<br/>
+
+                            <!--{{for parameters}}-->
+                            <!--&ltspan&gt{{:description}}&lt/span&gt&ltel-input v-model="formParams.{{:name}}" /&gt<br/>-->
+                            <!--{{/for}}-->
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div id="path-body-request-model">
+
+                </div>-->
+
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>Responses</legend>
+                </fieldset>
+                <table class="layui-table">
+                    <!-- <thead>
+                     <tr>
+                         <th>Properties</th>
+                         <th>Type</th>
+                         <th>Description</th>
+                     </tr>
+                     </thead>-->
+                    <tbody id="path-body-response-model">
+                    </tbody>
+                </table>
+            </div>
+            <div class="layui-tab-item">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>Parameters</legend>
+                </fieldset>
+                <div class="method-type">
+                    <lable>Parameter Type:</lable>
+                    <select onchange="changeParameterType('{{:operationId}}')" id="sel_pt_{{:operationId}}">
+                        <option value="form" contentType="application/x-www-form-urlencoded;charset=UTF-8">Form</option>
+                        <option value="json" contentType="application/json;charset=UTF-8">Json</option>
+                    </select>
+                </div>
+                <textarea class="parameter-text hide" rows="10" id="text_tp_{{:operationId}}"></textarea>
+                <form id="form_{{:operationId}}">
+                    <table class="layui-table" id="table_tp_{{:operationId}}">
+                        <colgroup>
+                            <col width="150">
+                            <col>
+                            <col>
+                            <col width="150">
+                            <col width="150">
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Value</th>
+                            <th>Description</th>
+                            <th>Parameter Type</th>
+                            <th>Data Type</th>
+                            <th>Required</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{for parameters}}
+                        <tr>
+                            <td>{{:name}}</td>
+                            <!--    <td>
+                                    {{if required}}
+                                    <input type="text" p_operationId="{{:~root.operationId}}" name="{{:name}}" in="{{:in}}"
+                                           required="required" placeholder="required" autocomplete="off" class="layui-input">
+                                    &lt;!&ndash;<input type="file" id="file" name="file" />&ndash;&gt;
+                                    {{else}}
+                                    <input type="text" p_operationId="{{:~root.operationId}}" name="{{:name}}" in="{{:in}}"
+                                           autocomplete="off" class="layui-input">
+                                    {{/if}}
+                                </td>-->
+
+                            <td>
+                                {{if required}}
+                                {{if type == 'file'}}
+                                <input type="file" p_operationId="{{:~root.operationId}}" name="{{:name}}" in="formData"
+                                       required="required" value="{{:default}}" placeholder="required">
+                                {{else}}
+                                <input type="text" p_operationId="{{:~root.operationId}}" name="{{:name}}" in="{{:in}}"
+                                       required="required" value="{{:default}}" placeholder="required"
+                                       autocomplete="off"
+                                       class="layui-input">
+                                {{/if}}
+                                {{else}}
+                                {{if type == 'file'}}
+                                <input type="file" p_operationId="{{:~root.operationId}}" name="{{:name}}" in="formData"
+                                       value="{{:default}}">
+                                {{else}}
+                                <input type="text" p_operationId="{{:~root.operationId}}" name="{{:name}}" in="{{:in}}"
+                                       autocomplete="off" value="{{:default}}" class="layui-input">
+                                {{/if}}
+                                {{/if}}
+                            </td>
+                            <td>{{:description}}</td>
+                            <td>
+                                {{if type == 'file'}}
+                                 formData
+                                {{else}}
+                                  {{:in}}
+                                {{/if}}
+                            </td>
+                            <td>
+                                {{if schema}}
+                                {{if schema.type}}
+                                {{:schema.type}}
+                                {{else}}
+                                json
+                                {{/if}}
+                                {{else}}
+                                {{:type}}
+                                {{/if}}
+                            </td>
+                            {{if required}}
+                            <td><i class="layui-icon">&#xe618;</i></td>
+                            {{else}}
+                            <td></td>
+                            {{/if}}
+                        </tr>
+                        {{/for}}
+                        </tbody>
+                    </table>
+                </form>
+                <div>
+                    <button class="layui-btn" name="btn_submit" onclick="getData('{{:operationId}}')"> Submit</button>
+                </div>
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>Responses</legend>
+                </fieldset>
+                <div class="responseJson">
+                    <pre id="json-response"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="temp_body_response_model" type="text/template">
+    {{props properties}}
+    <tr>
+        <td>{{:key}}</td>
+        <td>{{:prop.type}}</td>
+        <td>{{:prop.description}}</td>
+    </tr>
+    {{/props}}
+</script>
+
+<script id="temp_body_ref_model" type="text/template">
+    <table class="layui-table" style="table-layout:fixed">
+        <thead>
+        <tr class="ref_entity">
+            <td colspan="3" id="/definitions/{{:name}}">{{:name}} :</td>
+        </tr>
+        <tr>
+            <th>Properties</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{props properties}}
+        <tr>
+            <td>{{:key}}</td>
+            {{if prop.items}}
+            <td><a style="color: blue" href="{{:prop.items.$ref}}">{{:prop.type}}</a></td>
+            {{else prop.$ref}}
+            <td><a style="color: blue" href="{{:prop.$ref}}">{{:prop.type}}</a></td>
+            {{else}}
+            <td>{{:prop.type}}</td>
+            {{/if}}
+            <td>{{:prop.description}}</td>
+        </tr>
+        {{/props}}
+        </tbody>
+    </table>
+</script>
+
+</body>
+<script src="swagger2/layui/layui.js"></script>
+<script src="swagger2/js/jquery.js"></script>
+<script src="swagger2/js/jsrender.min.js"></script>
+<script src="swagger2/js/jquery.json-viewer.js"></script>
+<script src="swagger2/js/docs.js"></script>
+</html>

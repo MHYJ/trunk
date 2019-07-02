@@ -1,10 +1,13 @@
 package com.mhyj.user.service.impl;
 
 import com.mhyj.entity.UserAdmin;
+import com.mhyj.user.controller.vo.UserAdminVo;
 import com.mhyj.user.mapper.UserAdminMapper;
 import com.mhyj.user.service.IUserAdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -17,4 +20,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserAdminServiceImpl extends ServiceImpl<UserAdminMapper, UserAdmin> implements IUserAdminService {
 
+    @Resource
+    private UserAdminMapper userAdminMapper;
+
+    @Override
+    public UserAdminVo selectById(Integer userId) {
+        UserAdmin userAdmin = userAdminMapper.selectById(userId);
+        return userAdminMapper.selectUserById(userId);
+    }
 }

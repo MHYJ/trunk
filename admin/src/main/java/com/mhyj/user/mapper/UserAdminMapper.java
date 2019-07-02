@@ -2,6 +2,8 @@ package com.mhyj.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.mhyj.entity.UserAdmin;
+import com.mhyj.user.controller.vo.UserAdminVo;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +15,10 @@ import com.mhyj.entity.UserAdmin;
  */
 public interface UserAdminMapper extends BaseMapper<UserAdmin> {
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
+    UserAdminVo selectUserById(@Param("userId") Integer userId);
 }

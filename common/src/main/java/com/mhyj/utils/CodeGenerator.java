@@ -1,9 +1,12 @@
 package com.mhyj.utils;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.po.TableField;
+import com.baomidou.mybatisplus.generator.config.po.TableFill;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
@@ -18,7 +21,7 @@ import java.util.List;
 public class CodeGenerator {
 
     public static void main(String[] args) {
-        generator("/admin", "user","s", "s_user_admin");
+        generator("/admin", "admin","s", "s_user_admin");
     }
 
     /**
@@ -94,12 +97,6 @@ public class CodeGenerator {
         // 配置模板
         TemplateConfig templateConfig = new TemplateConfig();
 
-        // 配置自定义输出模板
-        //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
-        // templateConfig.setEntity("templates/entity2.java");
-        // templateConfig.setService();
-        // templateConfig.setController();
-
         templateConfig.setXml(null);
         mpg.setTemplate(templateConfig);
 
@@ -107,13 +104,17 @@ public class CodeGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        // strategy.setSuperEntityClass("com.baomidou.ant.common.BaseEntity");
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
         // strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
         // strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         // strategy.setSuperEntityColumns("id");
         strategy.setControllerMappingHyphenStyle(true);
+        List<TableFill> tableFills = new ArrayList<>();
+        tableFills.add(new TableFill("create_time", FieldFill.INSERT));
+        tableFills.add(new TableFill("update_time", FieldFill.INSERT_UPDATE));
+        strategy.setTableFillList(tableFills);
+        strategy.setLogicDeleteFieldName("is_deleted");
         strategy.setTablePrefix(prefix + "_");
         strategy.setInclude(tableName);
         mpg.setStrategy(strategy);

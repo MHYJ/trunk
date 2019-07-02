@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mhyj.admin.user.mapper.UserAdminMapper">
+<mapper namespace="com.mhyj.user.mapper.UserAdminMapper">
 
+    <select id="selectUserById" resultType="com.mhyj.user.controller.vo.UserAdminVo">
+        SELECT user_name, create_time
+        FROM s_user_admin
+        WHERE is_deleted = 0 AND id = #{userId}
+    </select>
 </mapper>

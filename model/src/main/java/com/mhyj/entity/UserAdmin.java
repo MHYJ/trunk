@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +18,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author mhyj
- * @since 2019-06-28
+ * @since 2019-07-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -41,12 +44,14 @@ public class UserAdmin implements Serializable {
     /**
      * 创建时间
      */
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     /**
      * 删除 0-否 1-是
      */
-    private Boolean isDeleted;
+    @TableLogic
+    private Integer isDeleted;
 
 
 }
