@@ -31,8 +31,6 @@ public class AdminApplication {
             log.info("Active profiles: {}", Arrays.asList(environment.getActiveProfiles()).toString());
             log.info("Swagger2 docs：http://{}:{}/docs.html",
                     InetAddress.getLocalHost().getHostAddress(), environment.getProperty("server.port"));
-            log.info("Druid：http://{}:{}/druid",
-                    InetAddress.getLocalHost().getHostAddress(), environment.getProperty("server.port"));
             log.info("=========================================================");
         };
     }

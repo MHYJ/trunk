@@ -1,4 +1,4 @@
-package com.mhyj.vo;
+package com.mhyj.core.vo;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;

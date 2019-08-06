@@ -5,7 +5,7 @@ import com.mhyj.entity.UserAdmin;
 import com.mhyj.user.controller.dto.UserAdminDto;
 import com.mhyj.user.controller.vo.UserAdminVo;
 import com.mhyj.user.service.IUserAdminService;
-import com.mhyj.vo.Result;
+import com.mhyj.core.vo.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -38,7 +39,7 @@ public class UserAdminController {
 
     @PostMapping("save")
     @ApiOperation(value = "user-save", response = Integer.class, notes = "mhyj")
-    public Result save(UserAdminDto userAdminDto) {
+    public Result save(@Valid UserAdminDto userAdminDto) {
         UserAdmin userAdmin = new UserAdmin();
         BeanUtils.copyProperties(userAdminDto, userAdmin);
         userAdminService.save(userAdmin);
@@ -46,9 +47,18 @@ public class UserAdminController {
     }
 
     @GetMapping("get")
-    @ApiOperation(value = "user-get", response = Integer.class, notes = "mhyj")
+    @ApiOperation(value = "user-get", response = UserAdminVo.class, notes = "mhyj")
     public Result get(@ApiParam(value = "user-id", required = true)@NotNull Integer userId) {
         UserAdminVo userAdmin = userAdminService.selectById(userId);
         return Result.ok(userAdmin);
+    }
+
+    @GetMapping("test")
+    @ApiOperation(value = "user-test", response = Integer.class, notes = "mhyj")
+    public Result test() {
+        if (true) {
+            throw new ArithmeticException();
+        }
+        return Result.ok();
     }
 }
