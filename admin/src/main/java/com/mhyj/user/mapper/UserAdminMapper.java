@@ -2,7 +2,7 @@ package com.mhyj.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.mhyj.entity.UserAdmin;
-import com.mhyj.user.controller.vo.UserAdminVo;
+import com.mhyj.user.vo.UserAdminVo;
 import org.apache.ibatis.annotations.Param;
 
 /**

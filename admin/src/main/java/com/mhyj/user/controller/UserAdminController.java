@@ -2,8 +2,8 @@ package com.mhyj.user.controller;
 
 
 import com.mhyj.entity.UserAdmin;
-import com.mhyj.user.controller.dto.UserAdminDto;
-import com.mhyj.user.controller.vo.UserAdminVo;
+import com.mhyj.user.dto.UserAdminDto;
+import com.mhyj.user.vo.UserAdminVo;
 import com.mhyj.user.service.IUserAdminService;
 import com.mhyj.core.vo.Result;
 import io.swagger.annotations.Api;
@@ -56,9 +56,6 @@ public class UserAdminController {
     @GetMapping("test")
     @ApiOperation(value = "user-test", response = Integer.class, notes = "mhyj")
     public Result test() {
-        if (true) {
-            throw new ArithmeticException();
-        }
-        return Result.ok();
+        return Result.ok("yes");
     }
 }

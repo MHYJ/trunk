@@ -3,3 +3,9 @@ server:
 spring:
   profiles:
     active: @environment@
+  application:
+    name: admin
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8760/eureka

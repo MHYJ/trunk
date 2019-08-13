@@ -1,7 +1,7 @@
 package com.mhyj.user.service.impl;
 
 import com.mhyj.entity.UserAdmin;
-import com.mhyj.user.controller.vo.UserAdminVo;
+import com.mhyj.user.vo.UserAdminVo;
 import com.mhyj.user.mapper.UserAdminMapper;
 import com.mhyj.user.service.IUserAdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

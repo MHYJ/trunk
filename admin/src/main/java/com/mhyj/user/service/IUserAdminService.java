@@ -2,7 +2,7 @@ package com.mhyj.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mhyj.entity.UserAdmin;
-import com.mhyj.user.controller.vo.UserAdminVo;
+import com.mhyj.user.vo.UserAdminVo;
 
 /**
  * <p>
