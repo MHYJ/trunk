@@ -9,3 +9,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8760/eureka
+  instance:
+    instance-id: eureka-client-admin
+    prefer-ip-address: true
+info:
+  app.name: @project.description@
+  build.artifactId: @project.artifactId@

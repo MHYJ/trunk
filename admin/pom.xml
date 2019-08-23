@@ -9,6 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>admin</artifactId>
+    <description>Back-stage management project</description>
 
     <dependencies>
         <dependency>
@@ -26,10 +27,16 @@
             <artifactId>spring-cloud-starter-eureka</artifactId>
             <version>1.4.7.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>2.1.7.RELEASE</version>
+        </dependency>
 
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
