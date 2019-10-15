@@ -1,5 +1,5 @@
 server:
-  port: 6495
+  port: 6496
 spring:
   profiles:
     active: @environment@

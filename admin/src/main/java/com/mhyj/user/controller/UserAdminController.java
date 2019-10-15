@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -55,7 +56,7 @@ public class UserAdminController {
 
     @GetMapping("test")
     @ApiOperation(value = "user-test", response = Integer.class, notes = "mhyj")
-    public Result test() {
-        return Result.ok("yes");
+    public Result test(@ApiParam(value = "时间") LocalDateTime dateTime) {
+        return Result.ok(dateTime);
     }
 }
